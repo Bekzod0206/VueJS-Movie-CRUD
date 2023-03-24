@@ -6,8 +6,8 @@
         <SearchPanel/>
         <AppFilter/>
       </div>
-      <MovieList :movies="movies"/>
-      <MovieAddForm/>
+      <MovieList :movies="movies" @onToggle="onToggleHandler" />
+      <MovieAddForm @createMovie="createMovie"/>
     </div>
   </div>
 </template>
@@ -34,21 +34,37 @@ export default {
           viewers: 811,
           favourite: false,
           like: true,
+          id: 1
         },
         {
           name: "Empire of Osman",
           viewers: 711,
           favourite: false,
           like: false,
+          id: 2
         },
         {
           name: "Ertugrul",
           viewers: 511,
           favourite: true,
           like: false,
+          id:3
         },
       ],
     }
+  },
+  methods: {
+    createMovie(item){
+      this.movies.push(item)
+    },
+    onToggleHandler({id, prop}){
+      this.movies = this.movies.map(item => {
+        if(item.id == id){
+          return{...item, [prop]: !item[prop]}
+        }
+        return item
+      })
+    },
   }
 }
 </script>
