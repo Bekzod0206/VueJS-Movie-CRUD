@@ -1,11 +1,30 @@
 <template>
   <div>
-    <input type="text" class="form-control search-input" placeholder="Kinolarni qidirish" />
+    <input type="text" class="form-control search-input" placeholder="Kinolarni qidirish" :value="term" @input="changeHandler"/>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    updateTermHandler: {
+      type: Function,
+      required: true,
+    }
+  },
+  data(){
+    return{
+      term: '',
+    }
+  },
+  methods: {
+    changeHandler(e){
+      this.term = e.target.value
+      this.updateTermHandler(this.term)
+    }
+  }
+
+}
 </script>
 
 <style scoped>
