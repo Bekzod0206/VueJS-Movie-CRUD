@@ -5,7 +5,7 @@
 
       <Input class="new-movie-label" placeholder="Qanday kino?" v-model="name"/>
       
-      <Input class="new-movie-label" placeholder="Qanday kino?" v-model="viewers" type="number"/>
+      <Input class="new-movie-label" placeholder="Necha marotaba ko'rilgan?" v-model="viewers" type="number"/>
 
       <PrimaryButton class=" btn-outline-dark" type="submit" @click="addMovie">
         Qo'shish
@@ -30,7 +30,6 @@ export default {
         viewers: this.viewers,
         favourite: false,
         like: false,
-        id: Date.now(),
       }
       this.$emit('createMovie', newMovie)
       this.name = ''
